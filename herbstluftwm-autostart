@@ -6,8 +6,7 @@
 # SESSION VARS #
 ################
 
-WALLPAPER="$HOME/pictures/Wallpapers/Minimal/OldFashioned.png"
-
+WALLPAPER="$HOME/.config/current-wallpaper"
 TERMINAL="termite"
 
 ################
@@ -21,7 +20,7 @@ hc emit_hook reload
 
 # Wallpaper
 feh --bg-scale $WALLPAPER
-convert -resize 1% -resize 10000% $WALLPAPER $HOME/.login-bg.png
+spawn convert -resize 1% -resize 10000% $WALLPAPER $HOME/.login-bg.png &
 
 # remove all existing keybindings
 hc keyunbind --all
@@ -33,10 +32,10 @@ Mod=Mod4   # Use the super key as the main modifier
 
 hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Shift-r reload
-hc keybind $Mod-Shift-c close
+hc keybind $Mod-q close
 
-#hc keybind $Mod-Return spawn ${TERMINAL:-xterm} # use your $TERMINAL with xterm as fallback
-hc keybind $Mod-Return spawn rofi -show run
+hc keybind $Mod-space spawn rofi -show run -modi run
+hc keybind $Mod-Shift-space spawn rofi -show window -modi window
 
 # basic movement
 # focusing clients
@@ -44,10 +43,10 @@ hc keybind $Mod-Left  focus left
 hc keybind $Mod-Down  focus down
 hc keybind $Mod-Up    focus up
 hc keybind $Mod-Right focus right
-hc keybind $Mod-h     focus left
-hc keybind $Mod-j     focus down
-hc keybind $Mod-k     focus up
-hc keybind $Mod-l     focus right
+#hc keybind $Mod-h     focus left
+#hc keybind $Mod-j     focus down
+#hc keybind $Mod-k     focus up
+#hc keybind $Mod-l     focus right
 
 # moving clients
 hc keybind $Mod-Shift-Left  shift left
@@ -61,10 +60,11 @@ hc keybind $Mod-Shift-l     shift right
 
 # splitting frames
 # create an empty frame at the specified direction
-hc keybind $Mod-u       split   bottom  0.5
-hc keybind $Mod-o       split   right   0.5
+hc keybind $Mod-h       split   bottom  0.5
+hc keybind $Mod-v       split   right   0.5
 # let the current frame explode into subframes
-hc keybind $Mod-Control-space split explode
+hc keybind $Mod-Control-Return split explode
+hc keybind $Mod-e split explode
 
 # resizing frames
 resizestep=0.05
@@ -103,7 +103,7 @@ hc keybind $Mod-p pseudotile toggle
 # The following cycles through the available layouts within a frame, but skips
 # layouts, if the layout change wouldn't affect the actual window positions.
 # I.e. if there are two windows within a frame, the grid layout is skipped.
-hc keybind $Mod-space                                                           \
+hc keybind $Mod-Return                                                           \
             or , and . compare tags.focus.curframe_wcount = 2                   \
                      . cycle_layout +1 vertical horizontal max vertical grid    \
                , cycle_layout +1
@@ -175,9 +175,13 @@ herbstclient set tree_style '╾│ ├└╼─┐'
 hc detect_monitors
 
 # find the panel
-panel=~/.config/herbstluftwm/panel.sh
-[ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
-for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
-    # start it on each monitor
-    "$panel" $monitor &
-done
+#panel=~/.config/herbstluftwm/panel.sh
+#[ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
+#for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
+#    # start it on each monitor
+#    "$panel" $monitor &
+#done
+
+hc pad 0 32
+hc spawn compton
+hc spawn yabar
