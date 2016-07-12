@@ -20,7 +20,7 @@ hc emit_hook reload
 
 # Wallpaper
 feh --bg-scale $WALLPAPER
-spawn convert -resize 1% -resize 10000% $WALLPAPER $HOME/.login-bg.png &
+spawn convert -resize 1% -resize 10000% $WALLPAPER $HOME/.login-bg &
 
 # remove all existing keybindings
 hc keyunbind --all
