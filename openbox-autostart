@@ -1,5 +1,5 @@
 WALLPAPER=$HOME/.config/current-wallpaper
 
-feh --bg-scale $WALLPAPER
+feh --bg-scale $WALLPAPER 
 convert -resize 1% -resize 10000% $WALLPAPER $HOME/.login-bg &
 compton &
