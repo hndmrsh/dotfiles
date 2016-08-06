@@ -4,3 +4,4 @@ feh --bg-scale $WALLPAPER
 convert -resize 1% -resize 10000% $WALLPAPER $HOME/.login-bg &
 compton &
 nemo -n &
+~/dotfiles/lemonbar.sh | lemonbar &
