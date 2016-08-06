@@ -1,0 +1,67 @@
+#!/bin/bash
+
+# Inspiration: use fifo/background jobs/subshells to allow different sleep schedules per bar and performance improvements
+# https://raw.githubusercontent.com/onespaceman/dotfiles/158a49ab84b92e9653b476b5964e71d411e49ecc/lemonbar/.config/lemonbar/bar
+
+debug () {
+    (>&2 echo "$1")
+}
+
+getproproot () {
+    echo "$(obxprop --root "$1")" | cut -d "=" -f 2
+}
+
+getpropid () {
+    echo "$(obxprop --id "$2" "$1")" | cut -d "=" -f 2
+}
+
+lb_workspaces() {
+    WORKSPACE_NAMES=$(getproproot "_NET_DESKTOP_NAMES" | tr -d ",")
+    CURRENT_WORKSPACE_NUM=$(getproproot "_NET_CURRENT_DESKTOP")
+    WINDOW_IDS=$(getproproot "_NET_CLIENT_LIST" | tr -d ",")
+    ACTIVE_WINDOW_ID=$(getproproot "_NET_ACTIVE_WINDOW" | tr -d " ")
+
+    # define array of window "icons"
+    for window in $WINDOW_IDS; do
+        TITLE=$(getpropid "_OB_APP_NAME" $window)
+        WID=$(getpropid "_NET_WM_DESKTOP" $window)
+
+        if [ ! -z $TITLE ]; then
+            if [ $window -eq $ACTIVE_WINDOW_ID ]; then
+                ICON="%{B#BB000000}  ${TITLE:2:1}  %{B#A0000000}"
+            else
+                ICON="  ${TITLE:2:1}  "
+            fi
+
+
+            WINDOWS[$WID]="${WINDOWS[$WID]}$ICON"
+        fi
+    done
+
+    let "i = 0"
+    for w in $WORKSPACE_NAMES; do
+        WINDOWS_OUTPUT="${WINDOWS[$i]}"
+        if [ ! -z  "$WINDOWS_OUTPUT" ]; then
+            TW=$(echo $w | tr -d "\"")
+
+            # if [ $CURRENT_WORKSPACE_NUM -eq $i ]; then
+            #     echo -n "%{B#FF000000} $TW %{B#A0000000}"
+            # else
+            #     echo -n "%{B#BB000000} $TW %{B#A0000000}"
+            # fi
+
+            echo -n "%{B#FF000000} $TW %{B#A0000000}$WINDOWS_OUTPUT"
+        fi
+        let "i = i + 1"
+    done
+}
+
+lb_clock() {
+    TIME="$(date "+%l:%M %p")"
+    echo -n "$TIME"
+}
+
+while true; do
+        echo "%{l}%{F#A0FFFFFF}%{B#A0000000}$(lb_workspaces)%{r}$(lb_clock) "
+        sleep 1
+done

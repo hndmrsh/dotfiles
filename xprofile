@@ -1,0 +1,5 @@
+if [ -s ~/.Xmodmap ]; then
+  xmodmap ~/.Xmodmap
+fi
+
+xautolock -time 10 -locker "/home/sam/scripts/lock-screen" &
