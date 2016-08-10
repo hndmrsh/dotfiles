@@ -1,0 +1,7 @@
+[Nemo Action]
+Name=Combine videos
+Comment=Use ffmpeg to combine multiple video files into a single video
+Exec=/home/sam/scripts/combine-videos %F
+Quote=double
+Selection=m
+Mimetypes=video/*

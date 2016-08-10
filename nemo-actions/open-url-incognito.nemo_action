@@ -1,0 +1,9 @@
+[Nemo Action]
+Name=Open in Chrome (Incognito)
+Comment=Open link in Chrome (incognito mode)
+
+Exec=/home/sam/scripts/open-url "%F" --incognito
+
+Selection=S
+
+Extensions=url;desktop;

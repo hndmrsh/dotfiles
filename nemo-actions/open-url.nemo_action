@@ -1,0 +1,6 @@
+[Nemo Action]
+Name=Open in Chrome 
+Comment=Open link in Chrome
+Exec=/home/sam/scripts/open-url "%F"
+Selection=S
+Extensions=url;desktop;

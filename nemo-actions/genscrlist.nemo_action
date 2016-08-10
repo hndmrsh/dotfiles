@@ -1,0 +1,7 @@
+[Nemo Action]
+Name=Generate scrlists
+Comment=Generate screenshot grids for this video
+Exec=/home/sam/scripts/genscrlist %F %P/Scrlists
+Quote=double
+Selection=notnone
+Mimetypes=video/*
