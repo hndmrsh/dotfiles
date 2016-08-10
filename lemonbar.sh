@@ -3,6 +3,9 @@
 # Inspiration: use fifo/background jobs/subshells to allow different sleep schedules per bar and performance improvements
 # https://raw.githubusercontent.com/onespaceman/dotfiles/158a49ab84b92e9653b476b5964e71d411e49ecc/lemonbar/.config/lemonbar/bar
 
+#####################
+###### HELPERS ######
+#####################
 debug () {
     (>&2 echo "$1")
 }
@@ -15,6 +18,10 @@ getpropid () {
     echo "$(obxprop --id "$2" "$1")" | cut -d "=" -f 2
 }
 
+#####################
+###### BLOCKS #######
+#####################
+
 lb_workspaces() {
     WORKSPACE_NAMES=$(getproproot "_NET_DESKTOP_NAMES" | tr -d ",")
     CURRENT_WORKSPACE_NUM=$(getproproot "_NET_CURRENT_DESKTOP")
@@ -26,7 +33,7 @@ lb_workspaces() {
         TITLE=$(getpropid "_OB_APP_NAME" $window)
         WID=$(getpropid "_NET_WM_DESKTOP" $window)
 
-        if [ ! -z $TITLE ]; then
+        if [ ! -z "$TITLE" ]; then
             if [ $window -eq $ACTIVE_WINDOW_ID ]; then
                 ICON="%{B#BB000000}  ${TITLE:2:1}  %{B#A0000000}"
             else
@@ -50,7 +57,7 @@ lb_workspaces() {
             #     echo -n "%{B#BB000000} $TW %{B#A0000000}"
             # fi
 
-            echo -n "%{B#FF000000} $TW %{B#A0000000}$WINDOWS_OUTPUT"
+            echo -n "%{B#FF000000}  $TW  %{B#A0000000}$WINDOWS_OUTPUT"
         fi
         let "i = i + 1"
     done
@@ -61,7 +68,23 @@ lb_clock() {
     echo -n "$TIME"
 }
 
+lb_stat() {
+    CPU="$(mpstat 1 1 | tail -n 1 | awk '$12 ~ /[0-9.]+/ { print 100 - $12 }')"
+    RAM="$(free -h | awk 'NR==2 {print $3/$2*100}')"
+
+    echo -n "CPU: $(printf "%.0f%%" "$CPU")  RAM: $(printf "%.0f%%" "$RAM")"
+}
+
+lb_redshift() {
+    REDSHIFT=$(redshift -p 2> /dev/null | tail -n 2 | head -n 1 | cut -d ':' -f 2 | tr -d ' ')
+    echo -n "$REDSHIFT"
+}
+
+
+#####################
+###### RENDER #######
+#####################
 while true; do
-        echo "%{l}%{F#A0FFFFFF}%{B#A0000000}$(lb_workspaces)%{r}$(lb_clock) "
+        echo "%{l}%{F#A0FFFFFF}%{B#A0000000}$(lb_workspaces)%{r}  $(lb_redshift)  $(lb_stat)  $(lb_clock) "
         sleep 1
 done

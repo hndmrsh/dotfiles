@@ -181,146 +181,121 @@
   </dock>
   <keyboard>
     <chainQuitKey>C-g</chainQuitKey>
-    <!-- Moving windows -->
-    <keybind key="A-Up">
-      <action name="MoveRelative">
-        <x>0</x>
-        <y>-20</y>
-      </action>
-    </keybind>
-    <keybind key="A-Down">
-      <action name="MoveRelative">
-        <x>0</x>
-        <y>20</y>
-      </action>
-    </keybind>
-    <keybind key="A-Left">
-      <action name="MoveRelative">
-        <x>-20</x>
-        <y>0</y>
-      </action>
-    </keybind>
-    <keybind key="A-Right">
-      <action name="MoveRelative">
-        <x>20</x>
-        <y>0</y>
-      </action>
-    </keybind>
     <!-- Keybindings for desktop switching -->
-    <keybind key="C-A-Left">
+    <keybind key="C-W-Left">
       <action name="GoToDesktop">
         <to>left</to>
         <wrap>no</wrap>
       </action>
     </keybind>
-    <keybind key="C-A-Right">
+    <keybind key="C-W-Right">
       <action name="GoToDesktop">
         <to>right</to>
         <wrap>no</wrap>
       </action>
     </keybind>
-    <keybind key="C-A-Up">
+    <keybind key="C-W-Up">
       <action name="GoToDesktop">
         <to>up</to>
         <wrap>no</wrap>
       </action>
     </keybind>
-    <keybind key="C-A-Down">
+    <keybind key="C-W-Down">
       <action name="GoToDesktop">
         <to>down</to>
         <wrap>no</wrap>
       </action>
     </keybind>
-    <keybind key="S-A-Left">
+    <keybind key="S-W-Left">
       <action name="SendToDesktop">
         <to>left</to>
         <wrap>no</wrap>
       </action>
     </keybind>
-    <keybind key="S-A-Right">
+    <keybind key="S-W-Right">
       <action name="SendToDesktop">
         <to>right</to>
         <wrap>no</wrap>
       </action>
     </keybind>
-    <keybind key="S-A-Up">
+    <keybind key="S-W-Up">
       <action name="SendToDesktop">
         <to>up</to>
         <wrap>no</wrap>
       </action>
     </keybind>
-    <keybind key="S-A-Down">
+    <keybind key="S-W-Down">
       <action name="SendToDesktop">
         <to>down</to>
         <wrap>no</wrap>
       </action>
     </keybind>
-    <keybind key="A-z">
+    <keybind key="W-z">
       <action name="GoToDesktop">
         <to>1</to>
       </action>
     </keybind>
-    <keybind key="A-x">
+    <keybind key="W-x">
       <action name="GoToDesktop">
         <to>2</to>
       </action>
     </keybind>
-    <keybind key="A-c">
+    <keybind key="W-c">
       <action name="GoToDesktop">
         <to>3</to>
       </action>
     </keybind>
-    <keybind key="A-v">
+    <keybind key="W-v">
       <action name="GoToDesktop">
         <to>4</to>
       </action>
     </keybind>
-    <keybind key="A-b">
+    <keybind key="W-b">
       <action name="GoToDesktop">
         <to>5</to>
       </action>
     </keybind>
-    <keybind key="A-n">
+    <keybind key="W-n">
       <action name="GoToDesktop">
         <to>6</to>
       </action>
     </keybind>
-    <keybind key="A-m">
+    <keybind key="W-m">
       <action name="GoToDesktop">
         <to>7</to>
       </action>
     </keybind>
-    <keybind key="S-A-z">
+    <keybind key="S-W-z">
       <action name="SendToDesktop">
         <to>1</to>
       </action>
     </keybind>
-    <keybind key="S-A-x">
+    <keybind key="S-W-x">
       <action name="SendToDesktop">
         <to>2</to>
       </action>
     </keybind>
-    <keybind key="S-A-c">
+    <keybind key="S-W-c">
       <action name="SendToDesktop">
         <to>3</to>
       </action>
     </keybind>
-    <keybind key="S-A-v">
+    <keybind key="S-W-v">
       <action name="SendToDesktop">
         <to>4</to>
       </action>
     </keybind>
-    <keybind key="S-A-b">
+    <keybind key="S-W-b">
       <action name="SendToDesktop">
         <to>5</to>
       </action>
     </keybind>
-    <keybind key="S-A-n">
+    <keybind key="S-W-n">
       <action name="SendToDesktop">
         <to>6</to>
       </action>
     </keybind>
-    <keybind key="S-A-m">
+    <keybind key="S-W-m">
       <action name="SendToDesktop">
         <to>7</to>
       </action>
@@ -328,68 +303,59 @@
     <keybind key="W-d">
       <action name="ToggleShowDesktop"/>
     </keybind>
-    <keybind key="A-S-q">
+    <keybind key="S-W-q">
       <action name="Exit"/>
     </keybind>
     <!-- Keybindings for windows -->
-    <keybind key="A-q">
+    <keybind key="W-q">
       <action name="Close"/>
     </keybind>
-    <keybind key="A-l">
+    <keybind key="W-l">
       <action name="Execute">
         <command>/home/sam/scripts/lock-screen</command>
       </action>
     </keybind>
-    <keybind key="A-Escape">
+    <keybind key="W-Escape">
       <action name="Lower"/>
       <action name="FocusToBottom"/>
       <action name="Unfocus"/>
     </keybind>
-    <keybind key="A-space">
+    <keybind key="W-C-space">
       <action name="ShowMenu">
         <menu>client-menu</menu>
       </action>
     </keybind>
     <!-- Keybindings for window switching with the arrow keys -->
-    <keybind key="W-S-Right">
+    <keybind key="W-Right">
       <action name="DirectionalCycleWindows">
         <direction>right</direction>
       </action>
     </keybind>
-    <keybind key="W-S-Left">
+    <keybind key="W-Left">
       <action name="DirectionalCycleWindows">
         <direction>left</direction>
       </action>
     </keybind>
-    <keybind key="W-S-Up">
+    <keybind key="W-Up">
       <action name="DirectionalCycleWindows">
         <direction>up</direction>
       </action>
     </keybind>
-    <keybind key="W-S-Down">
+    <keybind key="W-Down">
       <action name="DirectionalCycleWindows">
         <direction>down</direction>
       </action>
     </keybind>
-    <keybind key="A-S-r">
+    <keybind key="W-S-r">
       <action name="Reconfigure"/>
     </keybind>
     <!-- Keybindings for running applications -->
-    <keybind key="W-e">
-      <action name="Execute">
-        <startupnotify>
-          <enabled>true</enabled>
-          <name>Konqueror</name>
-        </startupnotify>
-        <command>kfmclient openProfile filemanagement</command>
-      </action>
-    </keybind>
-    <keybind key="A-space">
+    <keybind key="W-space">
       <action name="Execute">
         <command>rofi -show run -modi run</command>
       </action>
     </keybind>
-    <keybind key="A-S-space">
+    <keybind key="W-S-space">
       <action name="Execute">
         <command>rofi -show window -modi window</command>
       </action>
