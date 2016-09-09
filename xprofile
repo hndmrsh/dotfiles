@@ -1,3 +1,4 @@
+export PATH=$PATH:~/scripts:~/.gem/ruby/2.3.0/bin
 if [ -s ~/.Xmodmap ]; then
   xmodmap ~/.Xmodmap
 fi

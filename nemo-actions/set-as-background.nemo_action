@@ -1,0 +1,6 @@
+[Nemo Action]
+Name=Set as Wallpaper
+Comment=Set the selected image as your Openbox desktop wallpaper (using feh)
+Exec=sudo /home/sam/scripts/set-wallpaper-ob "%F"
+Selection=s
+Mimetypes=image/*;

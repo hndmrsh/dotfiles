@@ -70,9 +70,18 @@ lb_clock() {
 
 lb_stat() {
     CPU="$(mpstat 1 1 | tail -n 1 | awk '$12 ~ /[0-9.]+/ { print 100 - $12 }')"
-    RAM="$(free -h | awk 'NR==2 {print $3/$2*100}')"
+    RAM="$(free -b | awk 'NR==2 {print $3/$2*100}')"
 
     echo -n "CPU: $(printf "%.0f%%" "$CPU")  RAM: $(printf "%.0f%%" "$RAM")"
+}
+
+lb_uptime() {
+    UPTIME="$(uptime -p)"
+    if [ -z "${UPTIME:3}" ]; then
+        echo "0 minutes"
+    else
+        echo -n "${UPTIME:3}"
+    fi
 }
 
 lb_redshift() {
@@ -80,11 +89,34 @@ lb_redshift() {
     echo -n "$REDSHIFT"
 }
 
+lb_asana() {
+    COUNT=$(asana-tasks-due)
+    echo -n "$COUNT tasks due"
+}
+
+lb_tvstatus() {
+    COUNT=$(xrandr | grep "[0-9]\+x[0-9]\++[0-9]\++[0-9]\+" | wc -l)
+
+    if [ $COUNT -eq 3 ]; then
+        echo -n "tv on"
+    else
+        echo -n "tv off"
+    fi
+}
 
 #####################
 ###### RENDER #######
 #####################
 while true; do
-        echo "%{l}%{F#A0FFFFFF}%{B#A0000000}$(lb_workspaces)%{r}  $(lb_redshift)  $(lb_stat)  $(lb_clock) "
+        echo -n "%{l}%{F#FFFFFF}%{B#2F343F}"
+        # echo -n "$(lb_workspaces)"
+        echo -n "%{r}"
+        echo -n " | $(lb_redshift) | "
+        # echo -n " | $(lb_tvstatus) | "
+        # echo -n " | $(lb_asana) | "
+        echo -n " | $(lb_uptime) | "
+        echo -n " | $(lb_stat) | "
+        echo -n " | $(lb_clock) | "
+        echo
         sleep 1
 done

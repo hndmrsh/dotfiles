@@ -300,6 +300,9 @@
         <to>7</to>
       </action>
     </keybind>
+    <keybind key="S-W-comma">
+      <action name="ToggleOmnipresent"/>
+    </keybind>
     <keybind key="W-d">
       <action name="ToggleShowDesktop"/>
     </keybind>
@@ -352,7 +355,12 @@
     <!-- Keybindings for running applications -->
     <keybind key="W-space">
       <action name="Execute">
-        <command>rofi -show run -modi run</command>
+        <command>rofi -show drun -modi drun,run</command>
+      </action>
+    </keybind>
+    <keybind key="W-C-space">
+      <action name="Execute">
+        <command>rofi -show run -modi run,drun</command>
       </action>
     </keybind>
     <keybind key="W-S-space">
