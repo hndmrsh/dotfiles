@@ -9,5 +9,6 @@ eval $(keychain --eval --quiet --noask id_rsa)
 alias hc=herbstclient
 alias poweroff="systemctl poweroff"
 alias reboot="systemctl reboot"
+alias ssh-mc="ssh root@192.168.1.107"
 
 function yaourt-cleandeps() { yaourt -Rns $(yaourt -Qtdq) }
