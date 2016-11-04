@@ -1,0 +1,8 @@
+[Nemo Action]
+Name=Bulk rename
+Comment=Bulk rename selected files
+Exec=thunar --bulk-rename %F
+Icon-Name=thunar
+Selection=notnone
+Extensions=any
+Quote double
