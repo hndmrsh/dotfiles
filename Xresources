@@ -1,3 +1,14 @@
+rofi.padding: 480
+rofi.fullscreen: true
+rofi.hide-scrollbar: true
+rofi.terminal: termite
+rofi.font: Tamzen 20
+rofi.bw: 0
+rofi.m: -4
+rofi.color-window: #EE383C4A, #EE383C4A, #00383C4A
+rofi.color-normal: #CC383C4A, #8FA1B3, #CC383C4A, #00383C4A, #F2F2ED
+rofi.separator-style: solid
+
 Xft.autohint: 0
 Xft.lcdfilter: lcddefault
 Xft.hintstyle: hintfull

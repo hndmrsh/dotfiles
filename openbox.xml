@@ -368,6 +368,11 @@
         <command>rofi -show window -modi window</command>
       </action>
     </keybind>
+    <keybind key="Print">
+      <action name="Execute">
+        <command>teiler</command>
+      </action>
+    </keybind>
   </keyboard>
   <mouse>
     <dragThreshold>1</dragThreshold>
